@@ -6,7 +6,7 @@ function Navbar() {
     <>
       <div className="topnav">
         <Link to="/">
-          <h1>My Blog</h1>
+          <h1>Blog-Posts</h1>
         </Link>
       </div>
     </>

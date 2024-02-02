@@ -1,9 +1,9 @@
 .arrow {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .arrow:hover {
-  color: blue;
+  color: var(--hover);
 }
 
 hr {
@@ -37,4 +37,13 @@ h1 {
 
 .post-footer p {
   font-size: 0.7rem;
+}
+
+.postpage-body {
+  margin-top: 1rem;
+  background-color: var(--box-inner);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }

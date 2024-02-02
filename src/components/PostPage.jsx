@@ -91,7 +91,7 @@ function PostPage() {
   } else {
     return (
       <div className="container">
-        <div className="main-body">
+        <div className="postpage-body">
           <Link to="/" className="arrow">
             &larr;
           </Link>

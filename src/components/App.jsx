@@ -20,7 +20,7 @@ function App() {
         }
         const data = await response.json();
         setPosts(data.posts);
-        //console.log(data.posts);
+        console.log(data.posts);
       } catch (err) {
         setError(err.message);
         setPosts(null);
@@ -51,9 +51,9 @@ function App() {
     return (
       <div className="container">
         <div className="main-body">
-          {posts.map(
-            (post) => post.published && <Post key={post._id} post={post} />
-          )}
+          {posts.map((post) => (
+            /*post.published &&*/ <Post key={post._id} post={post} />
+          ))}
         </div>
       </div>
     );
