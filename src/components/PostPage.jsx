@@ -69,7 +69,7 @@ function PostPage() {
             <h1>{post.title}</h1>
 
             <hr></hr>
-            <p>{post.text}</p>
+            <p id="post-text">{post.text}</p>
             <hr></hr>
             <div className="post-footer">
               <p className="postpage-info">Posted: {getDate(post.createdAt)}</p>
