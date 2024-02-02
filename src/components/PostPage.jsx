@@ -6,8 +6,12 @@ import "../styles/PostPage.css";
 function PostPage() {
   const { postid } = useParams();
   const [post, setPost] = useState();
-  const [loading, setLoading] = useState(true);
+  const [loadingPost, setLoadingPost] = useState(true);
+  const [loadingComments, setLoadingComments] = useState(true);
   const [error, setError] = useState();
+
+  const [comments, setComments] = useState();
+  const [commentCount, setCommentCount] = useState(0);
 
   function getDate(date) {
     const dateFormat = "Do MMMM YYYY, h:mm:ss a";
@@ -33,10 +37,35 @@ function PostPage() {
         setError(err.message);
         setPost(null);
       } finally {
-        setLoading(false);
+        setLoadingPost(false);
       }
     };
     getPost();
+  }, []);
+
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/posts/${postid}/comments`,
+          { method: "GET" }
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        const data = await response.json();
+        setComments(data.comments);
+        setCommentCount(data.comments.length);
+        //console.log(data.comments);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+        setComments(null);
+      } finally {
+        setLoadingComments(false);
+      }
+    };
+    getComments();
   }, []);
 
   if (error) {
@@ -46,11 +75,11 @@ function PostPage() {
           <Link to="/" className="arrow">
             &larr;
           </Link>
-          <p>Error loading post</p>
+          <p>Error loading post {error}</p>
         </div>
       </div>
     );
-  } else if (loading) {
+  } else if (loadingComments || loadingPost) {
     return (
       <div className="container">
         <div className="post-body">
@@ -80,7 +109,7 @@ function PostPage() {
           </div>
           <div className="comment-container">
             <button>Add comment</button>
-            <div>Comments:</div>
+            <div>Comments: {commentCount}</div>
           </div>
         </div>
       </div>
