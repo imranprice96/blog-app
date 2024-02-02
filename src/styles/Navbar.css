@@ -1,0 +1,13 @@
+.topnav {
+  background-color: black;
+  overflow: hidden;
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.topnav h1 {
+  width: 70%;
+  color: white;
+  font-size: 2rem;
+}

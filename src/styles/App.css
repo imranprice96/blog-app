@@ -1,0 +1,11 @@
+.container {
+  background-color: var(--box-outer);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.main-body {
+  background-color: var(--box-inner);
+  width: 70%;
+}
