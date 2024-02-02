@@ -13,6 +13,7 @@ function PostPage() {
 
   const [comments, setComments] = useState();
   const [commentCount, setCommentCount] = useState(0);
+  const url = import.meta.env.VITE_API_URL;
 
   function getDate(date) {
     const dateFormat = "Do MMMM YYYY, h:mm:ss a";
@@ -22,12 +23,9 @@ function PostPage() {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/posts/${postid}`,
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch(`${url}/api/posts/${postid}`, {
+          method: "GET",
+        });
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
         }
@@ -47,10 +45,9 @@ function PostPage() {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/posts/${postid}/comments`,
-          { method: "GET" }
-        );
+        const response = await fetch(`${url}/api/posts/${postid}/comments`, {
+          method: "GET",
+        });
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
         }
@@ -84,7 +81,7 @@ function PostPage() {
     return (
       <div className="container">
         <div className="post-body">
-          <p>Loading post...</p>
+          <p></p>
         </div>
       </div>
     );

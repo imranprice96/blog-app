@@ -8,11 +8,12 @@ function App() {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/posts`, {
+        const response = await fetch(`${url}/api/posts`, {
           method: "GET",
         });
         if (!response.ok) {
@@ -20,7 +21,7 @@ function App() {
         }
         const data = await response.json();
         setPosts(data.posts);
-        console.log(data.posts);
+        //console.log(data.posts);
       } catch (err) {
         setError(err.message);
         setPosts(null);
@@ -43,7 +44,7 @@ function App() {
     return (
       <div className="container">
         <div className="main-body">
-          <p>Loading posts...</p>
+          <p></p>
         </div>
       </div>
     );
