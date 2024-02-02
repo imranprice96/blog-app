@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useCollapse } from "react-collapsed";
 
 function Comments({ comments, count }) {
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
+    duration: 200,
+  });
   return (
     <div className="comment-container">
       <div className="add-comment">

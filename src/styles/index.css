@@ -2,6 +2,7 @@
   --box-inner: #f3f4f6;
   --box-outer: #e5e7eb;
   --hover: #4b5563;
+  --maxW: 1024px;
 }
 
 html,

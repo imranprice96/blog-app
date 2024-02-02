@@ -9,6 +9,7 @@
   margin-top: 1rem;
   background-color: var(--box-inner);
   width: 70%;
+  max-width: var(--maxW);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

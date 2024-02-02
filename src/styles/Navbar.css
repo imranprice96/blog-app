@@ -13,6 +13,7 @@
   text-decoration-style: dotted;
   text-underline-offset: 0.6rem;
   width: 70%;
+  max-width: var(--maxW);
   color: black;
   font-size: 2rem;
 }
