@@ -1,0 +1,5 @@
+.comment-container {
+  border-radius: 0.2rem;
+  padding: 1rem;
+  background-color: var(--box-inner);
+}

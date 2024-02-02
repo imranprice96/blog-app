@@ -28,12 +28,6 @@ h1 {
   background-color: var(--box-inner);
 }
 
-.comment-container {
-  border-radius: 0.2rem;
-  padding: 1rem;
-  background-color: var(--box-inner);
-}
-
 .post-footer {
   font-style: italic;
   display: flex;

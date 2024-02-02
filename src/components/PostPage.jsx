@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import "../styles/PostPage.css";
+import Comments from "./Comments";
 
 function PostPage() {
   const { postid } = useParams();
@@ -107,10 +108,7 @@ function PostPage() {
               </p>
             </div>
           </div>
-          <div className="comment-container">
-            <button>Add comment</button>
-            <div>Comments: {commentCount}</div>
-          </div>
+          <Comments comments={comments} count={commentCount} />
         </div>
       </div>
     );
