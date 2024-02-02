@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import moment from "moment";
+import "../styles/PostPage.css";
 
 function PostPage() {
   const { postid } = useParams();
@@ -27,7 +28,7 @@ function PostPage() {
         }
         const data = await response.json();
         setPost(data);
-        console.log(data);
+        //console.log(data);
       } catch (err) {
         setError(err.message);
         setPost(null);
@@ -38,17 +39,53 @@ function PostPage() {
     getPost();
   }, []);
 
-  return (
-    <div className="container">
-      <div className="main-body">
-        <Link to="/">Home</Link>
-        <p>Title: {post.title}</p>
-        <p>Text: {post.text}</p>
-        <p>Posted: {getDate(post.createdAt)}</p>
-        <p>Updated: {getDate(post.updatedAt)}</p>
+  if (error) {
+    return (
+      <div className="container">
+        <div className="main-body">
+          <Link to="/" className="arrow">
+            &larr;
+          </Link>
+          <p>Error loading post</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (loading) {
+    return (
+      <div className="container">
+        <div className="post-body">
+          <p>Loading post...</p>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        <div className="main-body">
+          <Link to="/" className="arrow">
+            &larr;
+          </Link>
+          <div className="post-body">
+            <h1>{post.title}</h1>
+
+            <hr></hr>
+            <p>{post.text}</p>
+            <hr></hr>
+            <div className="post-footer">
+              <p className="postpage-info">Posted: {getDate(post.createdAt)}</p>
+              <p className="postpage-info">
+                Updated: {getDate(post.updatedAt)}
+              </p>
+            </div>
+          </div>
+          <div className="comment-container">
+            <button>Add comment</button>
+            <div>Comments:</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default PostPage;

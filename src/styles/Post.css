@@ -1,4 +1,27 @@
 .post-container {
-  border: 1px solid black;
+  display: flex;
+  border-radius: 0.5rem;
   height: auto;
+  padding: 0.5rem;
+  background-color: var(--box-inner);
+  align-items: center;
+}
+
+.post-container:hover {
+  background-color: white;
+}
+
+h2 {
+  font-size: 1.5rem;
+  width: 20%;
+  margin-right: 0.5rem;
+}
+
+p {
+  font-size: 0.7rem;
+}
+
+.post-info {
+  padding-left: 0.5rem;
+  border-left: 1px solid black;
 }

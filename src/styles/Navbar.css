@@ -6,8 +6,13 @@
   justify-content: center;
 }
 
-.topnav h1 {
+.topnav a {
+  text-decoration: none;
   width: 70%;
   color: white;
   font-size: 2rem;
+}
+
+.topnav a:hover {
+  color: blue;
 }

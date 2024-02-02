@@ -22,7 +22,7 @@ function Post({ post }) {
         const data = await response.json();
         setComments(data.comments);
         setCommentCount(data.comments.length);
-        console.log(data.comments);
+        //console.log(data.comments);
         setError(null);
       } catch (err) {
         setError(err.message);
@@ -49,11 +49,12 @@ function Post({ post }) {
     return (
       <Link to={`posts/${post._id}`}>
         <div className="post-container">
-          <p>Title: {post.title}</p>
-          <p>Text: {post.text}</p>
-          <p>Posted: {getDate(post.createdAt)}</p>
-          <p>Updated: {getDate(post.updatedAt)}</p>
-          <p>Comments: {commentCount}</p>
+          <h2>{post.title}</h2>
+          <div className="post-info">
+            <p>Posted: {getDate(post.createdAt)}</p>
+            <p>Updated: {getDate(post.updatedAt)}</p>
+            <p>Comments: {commentCount}</p>
+          </div>
         </div>
       </Link>
     );
