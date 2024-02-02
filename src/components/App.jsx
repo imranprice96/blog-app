@@ -52,9 +52,9 @@ function App() {
     return (
       <div className="container">
         <div className="main-body">
-          {posts.map((post) => (
-            /*post.published &&*/ <Post key={post._id} post={post} />
-          ))}
+          {posts.map(
+            (post) => post.published && <Post key={post._id} post={post} />
+          )}
         </div>
       </div>
     );
