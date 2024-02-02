@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
+import Post from "./Post";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -50,10 +51,7 @@ function App() {
       <div className="container">
         <div className="main-body">
           {posts.map((post) => (
-            <div key={post._id} className="post-container">
-              <h3>{post.title}</h3>
-              <p>{post.text}</p>
-            </div>
+            <Post key={post._id} post={post} />
           ))}
         </div>
       </div>
