@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/Post.css";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 function Post({ post }) {
   const [comments, setComments] = useState();
@@ -46,13 +47,15 @@ function Post({ post }) {
     );
   } else {
     return (
-      <div className="post-container">
-        <p>Title: {post.title}</p>
-        <p>Text: {post.text}</p>
-        <p>Posted: {getDate(post.createdAt)}</p>
-        <p>Updated: {getDate(post.updatedAt)}</p>
-        <p>Comments: {commentCount}</p>
-      </div>
+      <Link to={`posts/${post._id}`}>
+        <div className="post-container">
+          <p>Title: {post.title}</p>
+          <p>Text: {post.text}</p>
+          <p>Posted: {getDate(post.createdAt)}</p>
+          <p>Updated: {getDate(post.updatedAt)}</p>
+          <p>Comments: {commentCount}</p>
+        </div>
+      </Link>
     );
   }
 }
