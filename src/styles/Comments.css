@@ -57,6 +57,38 @@
 }
 
 .add-comment-form {
+  display: flex;
+  flex-direction: column;
   padding: 0 1rem 0 1rem;
   background-color: white;
+}
+
+.form-text {
+  width: calc(100% - 1rem);
+  resize: none;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.form-username {
+  margin: 1rem 0 1rem 0;
+  width: 20%;
+  min-width: 200px;
+  padding: 0.5rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.form-submit {
+  min-width: 100px;
+  width: 20%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.form-span {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
