@@ -56,6 +56,7 @@ function PostPage() {
         setComments(data.comments);
         setCommentCount(data.comments.length);
         setError(null);
+        //console.log(data.comments);
       } catch (err) {
         setError(err.message);
         setComments(null);
@@ -65,6 +66,11 @@ function PostPage() {
     };
     getComments();
   }, []);
+
+  const handleNewComment = (newComment) => {
+    setComments([...comments, newComment]);
+    setCommentCount((count) => count + 1);
+  };
 
   if (error) {
     return (
@@ -105,7 +111,12 @@ function PostPage() {
               </p>
             </div>
           </div>
-          <Comments comments={comments} count={commentCount} postid={postid} />
+          <Comments
+            comments={comments}
+            count={commentCount}
+            postid={postid}
+            change={handleNewComment}
+          />
         </div>
       </div>
     );

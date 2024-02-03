@@ -3,16 +3,17 @@ import "../styles/Comments.css";
 import { useState } from "react";
 import { useCollapse } from "react-collapsed";
 
-function Comments({ comments, count, postid }) {
-  const [data, setData] = useState({});
-  const [result, setResult] = useState();
+function Comments({ comments, count, postid, change }) {
+  const [data, setData] = useState({ username: "", text: "" });
   const url = import.meta.env.VITE_API_URL;
-  const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
+  const [isExpanded, setExpanded] = useState(false);
+
+  const { getCollapseProps, getToggleProps } = useCollapse({
     duration: 200,
+    isExpanded,
   });
 
   const handleSubmit = async (e) => {
-    //console.log(data);
     e.preventDefault();
     const response = await fetch(`${url}/api/posts/${postid}`, {
       method: "POST",
@@ -21,15 +22,28 @@ function Comments({ comments, count, postid }) {
         "Content-Type": "application/json",
       },
     });
-    const r = await response.json();
-    setResult({ ...result, r });
+    const result = await response.json();
+    change(result);
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setData({ username: "", text: "" });
+    toggle();
+  };
+
+  const toggle = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
   };
 
   return (
     <div className="comment-container">
       <div className="add-comment">
-        <span className="show-add-comment" {...getToggleProps()}>
-          <b>Add Comment</b>
+        <span
+          className="show-add-comment"
+          {...getToggleProps({ onClick: () => toggle() })}
+        >
+          <b>Add Comment ({count})</b>
           <b id="down-arrow">&#8964;</b>
         </span>
         <form
@@ -42,6 +56,7 @@ function Comments({ comments, count, postid }) {
             name="username"
             placeholder="Name"
             type="text"
+            value={data.username}
             required
             maxLength={100}
             onChange={(e) => setData({ ...data, username: e.target.value })}
@@ -49,6 +64,7 @@ function Comments({ comments, count, postid }) {
           <textarea
             className="form-text"
             name="text"
+            value={data.text}
             placeholder="Max 512 characters"
             required
             rows={5}
