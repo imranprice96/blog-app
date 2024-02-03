@@ -3,14 +3,26 @@ import "../styles/Comments.css";
 import { useState } from "react";
 import { useCollapse } from "react-collapsed";
 
-function Comments({ comments, count }) {
+function Comments({ comments, count, postid }) {
   const [data, setData] = useState({});
+  const [result, setResult] = useState();
+  const url = import.meta.env.VITE_API_URL;
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
     duration: 200,
   });
 
   const handleSubmit = async (e) => {
+    //console.log(data);
     e.preventDefault();
+    const response = await fetch(`${url}/api/posts/${postid}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const r = await response.json();
+    setResult({ ...result, r });
   };
 
   return (
@@ -41,9 +53,12 @@ function Comments({ comments, count }) {
             required
             rows={5}
             maxLength={512}
+            onChange={(e) => setData({ ...data, text: e.target.value })}
           />
           <span className="form-span">
-            <button className="form-submit">Submit</button>
+            <button className="form-submit" type="submit">
+              Submit
+            </button>
           </span>
         </form>
       </div>

@@ -2,6 +2,7 @@ import moment from "moment";
 import "../styles/Comments.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import parse from "html-react-parser";
 
 function Comment({ comment }) {
   function getDate(date) {
@@ -11,14 +12,14 @@ function Comment({ comment }) {
 
   return (
     <div>
-      <p className="comment-text">{comment.text}</p>
+      <p className="comment-text">{parse(comment.text)}</p>
       <div className="comment-info">
         <div className="user">
           <FontAwesomeIcon icon={faUser} style={{ color: "#4b5563" }} />
-          <p>{comment.username}</p>
+          <p>{parse(comment.username)}</p>
         </div>
 
-        <p>{getDate(comment.createdAt)}</p>
+        <p>{getDate(parse(comment.createdAt))}</p>
       </div>
     </div>
   );

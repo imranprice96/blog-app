@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import "../styles/PostPage.css";
 import Comments from "./Comments";
+import parse from "html-react-parser";
 
 function PostPage() {
   const { postid } = useParams();
@@ -54,7 +55,6 @@ function PostPage() {
         const data = await response.json();
         setComments(data.comments);
         setCommentCount(data.comments.length);
-        //console.log(data.comments);
         setError(null);
       } catch (err) {
         setError(err.message);
@@ -93,10 +93,10 @@ function PostPage() {
             &larr;
           </Link>
           <div className="post-body">
-            <h1>{post.title}</h1>
+            <h1>{parse(post.title)}</h1>
 
             <hr></hr>
-            <p id="post-text">{post.text}</p>
+            <p id="post-text">{parse(post.text)}</p>
             <hr></hr>
             <div className="post-footer">
               <p className="postpage-info">Posted: {getDate(post.createdAt)}</p>
@@ -105,7 +105,7 @@ function PostPage() {
               </p>
             </div>
           </div>
-          <Comments comments={comments} count={commentCount} />
+          <Comments comments={comments} count={commentCount} postid={postid} />
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
 import Post from "./Post";
-import { Link } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
