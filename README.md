@@ -1,6 +1,6 @@
-# Blog post app
+# blog-app
 
-Blog post app created with react to be used with a custom api -> blog-api
+Blog post app created with react to be used with a custom api: https://github.com/imranprice96/blog-api
 Posts and comments are stored in a mongodb database
 
 # Features
