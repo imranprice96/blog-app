@@ -3,7 +3,6 @@ import "../styles/App.css";
 import Post from "./Post";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
