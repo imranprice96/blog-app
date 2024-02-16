@@ -36,6 +36,7 @@ function Comments({ comments, count, postid, change }) {
     setExpanded((prevExpanded) => !prevExpanded);
   };
 
+  // Comment form can be refactored into its own component
   return (
     <div className="comment-container">
       <div className="add-comment">
