@@ -11,21 +11,25 @@ hr {
   border: 1px solid var(--box-outer);
 }
 
-h1 {
+.post-heading {
   margin: 1rem 0 1rem 0;
-  font-size: 2rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--heading);
 }
 
 #post-text {
   padding: 1rem 0 1rem 0;
   font-size: 1rem;
-  line-height: 2rem;
+  line-height: 1.5rem;
+  white-space: pre-wrap;
 }
 
 .post-body {
   border-radius: 0.2rem;
   padding: 1rem;
   background-color: var(--box-inner);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .post-footer {

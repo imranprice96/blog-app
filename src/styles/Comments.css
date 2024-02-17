@@ -20,7 +20,11 @@
   padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
+}
+
+.comment-date {
   font-style: italic;
+  font-size: 0.7rem;
 }
 
 .comment-text {
@@ -73,8 +77,8 @@
 
 .form-username {
   margin: 1rem 0 1rem 0;
-  width: 20%;
-  min-width: 200px;
+  width: calc(100% - 1rem);
+  max-width: 300px;
   padding: 0.5rem;
   font-family: "Roboto", sans-serif;
 }

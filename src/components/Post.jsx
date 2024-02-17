@@ -5,18 +5,19 @@ import parse from "html-react-parser";
 
 function Post({ post }) {
   function getDate(date) {
-    const dateFormat = "Do MMMM YYYY, h:mm:ss a";
+    const dateFormat = "Do MMMM YYYY";
     return moment(date).format(dateFormat);
   }
+  const snippet = post.text.substring(0, 150);
 
   return (
     <Link to={`posts/${post._id}`}>
       <div className="post-container">
-        <h2>{parse(post.title)}</h2>
-        <div className="post-info">
-          <p>Posted: {getDate(post.createdAt)}</p>
-          <p>Updated: {getDate(post.updatedAt)}</p>
-        </div>
+        <span className="post-info">
+          <p>{getDate(post.createdAt)}</p>
+        </span>
+        <h2 className="post-header">{parse(post.title)}</h2>
+        <p>{parse(snippet)}...</p>
       </div>
     </Link>
   );

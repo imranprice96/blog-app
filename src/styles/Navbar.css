@@ -1,4 +1,7 @@
 .topnav {
+  display: flex;
+  width: 100%;
+  justify-content: center;
   background-color: var(--box-outer);
   overflow: hidden;
   padding: 2rem 0 2rem 0;
@@ -6,22 +9,41 @@
   justify-content: center;
 }
 
-.topnav a {
-  letter-spacing: 0.7rem;
+.nav-link {
   font-weight: bold;
   text-decoration: underline;
   text-decoration-style: dotted;
   text-underline-offset: 0.6rem;
-  width: 70%;
+  width: 100%;
   max-width: var(--maxW);
   color: black;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-size: 2rem;
 }
 
-.topnav h1 {
+.nav-header {
   padding-left: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.3rem;
 }
 
-.topnav a:hover {
+.nav-link:hover {
   text-decoration-style: solid;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  max-width: 1024px;
+  align-items: center;
+  margin: auto;
+}
+
+.moon {
+  color: #ffd43b;
+  font-size: 2rem;
 }

@@ -17,7 +17,7 @@ function PostPage() {
   const url = import.meta.env.VITE_API_URL;
 
   function getDate(date) {
-    const dateFormat = "Do MMMM YYYY, h:mm:ss a";
+    const dateFormat = "Do MMMM YYYY";
     return moment(date).format(dateFormat);
   }
 
@@ -86,8 +86,10 @@ function PostPage() {
   } else if (loadingComments || loadingPost) {
     return (
       <div className="container">
-        <div className="post-body">
-          <p></p>
+        <div className="post-body" style={{ boxShadow: "none" }}>
+          <span className="loading">
+            <p>Loading...</p>
+          </span>
         </div>
       </div>
     );
@@ -99,7 +101,7 @@ function PostPage() {
             &larr;
           </Link>
           <div className="post-body">
-            <h1>{parse(post.title)}</h1>
+            <h1 className="post-heading">{parse(post.title)}</h1>
 
             <hr></hr>
             <p id="post-text">{parse(post.text)}</p>

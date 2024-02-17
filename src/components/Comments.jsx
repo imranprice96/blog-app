@@ -13,6 +13,15 @@ function Comments({ comments, count, postid, change }) {
     isExpanded,
   });
 
+  const confirmation = (e) => {
+    const confirm = window.confirm(
+      `${data.username}: ${data.text} - confirm your submission`
+    );
+    if (confirm) {
+      handleSubmit(e);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${url}/api/posts/${postid}`, {
@@ -50,7 +59,7 @@ function Comments({ comments, count, postid, change }) {
         <form
           className="add-comment-form"
           {...getCollapseProps()}
-          onSubmit={handleSubmit}
+          onSubmit={confirmation}
         >
           <input
             className="form-username"

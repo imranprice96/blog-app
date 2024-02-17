@@ -12,14 +12,14 @@ function Comment({ comment }) {
 
   return (
     <div>
+      <p className="comment-date">{getDate(parse(comment.createdAt))}</p>
       <p className="comment-text">{parse(comment.text)}</p>
+      <hr></hr>
       <div className="comment-info">
         <div className="user">
           <FontAwesomeIcon icon={faUser} style={{ color: "#4b5563" }} />
           <p>{parse(comment.username)}</p>
         </div>
-
-        <p>{getDate(parse(comment.createdAt))}</p>
       </div>
     </div>
   );

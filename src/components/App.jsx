@@ -42,7 +42,9 @@ function App() {
     return (
       <div className="container">
         <div className="main-body">
-          <p></p>
+          <span className="loading">
+            <p>Loading posts...</p>
+          </span>
         </div>
       </div>
     );
