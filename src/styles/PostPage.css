@@ -53,7 +53,7 @@ hr {
   gap: 0.5rem;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 767px) {
   .postpage-body {
     width: 90%;
   }

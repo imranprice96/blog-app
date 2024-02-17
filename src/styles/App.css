@@ -15,7 +15,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-@media (max-width: 1024px) {
+@media (max-width: 767px) {
   .main-body {
     width: 90%;
   }

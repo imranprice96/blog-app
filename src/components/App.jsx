@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import "../styles/App.css";
 import Post from "./Post";
+import moment from "moment";
 
 function App() {
   const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const url = import.meta.env.VITE_API_URL;
+
+  const sortByNewest = (posts) => {
+    const sortedPosts = posts.sort((a, b) =>
+      moment(b.updatedAt).diff(moment(a.updatedAt))
+    );
+    return sortedPosts;
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,7 +26,8 @@ function App() {
           throw new Error(`HTTP error: ${response.status}`);
         }
         const data = await response.json();
-        setPosts(data.posts);
+        const sortedPosts = sortByNewest(data.posts);
+        setPosts(sortedPosts);
         //console.log(data.posts);
       } catch (err) {
         setError(err.message);
