@@ -14,8 +14,9 @@ function Comments({ comments, count, postid, change }) {
   });
 
   const confirmation = (e) => {
+    e.preventDefault();
     const confirm = window.confirm(
-      `${data.username}: ${data.text} - confirm your submission`
+      `Confirm your submission:\n${data.username}\n${data.text}`
     );
     if (confirm) {
       handleSubmit(e);
