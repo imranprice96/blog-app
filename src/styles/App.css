@@ -15,6 +15,11 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+@media (max-width: 1024px) {
+  .main-body {
+    width: 90%;
+  }
+}
 
 .loading {
   width: 100%;

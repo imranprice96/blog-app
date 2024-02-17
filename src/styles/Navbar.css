@@ -43,6 +43,12 @@
   margin: auto;
 }
 
+@media (max-width: 1024px) {
+  .nav-items {
+    width: 90%;
+  }
+}
+
 .moon {
   color: #ffd43b;
   font-size: 2rem;
