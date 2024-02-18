@@ -18,6 +18,10 @@ function App() {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (localStorage.getItem("blogPosts")) {
+        const storedPosts = JSON.parse(localStorage.getItem("blogPosts"));
+        setPosts(storedPosts);
+      }
       try {
         const response = await fetch(`${url}/api/posts`, {
           method: "GET",
@@ -27,6 +31,7 @@ function App() {
         }
         const data = await response.json();
         const sortedPosts = sortByNewest(data.posts);
+        localStorage.setItem("blogPosts", JSON.stringify(sortedPosts));
         setPosts(sortedPosts);
         //console.log(data.posts);
       } catch (err) {

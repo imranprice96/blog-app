@@ -21,8 +21,13 @@ function PostPage() {
     return moment(date).format(dateFormat);
   }
 
+  /*
   useEffect(() => {
     const getPost = async () => {
+      if (localStorage.getItem("post")) {
+        const storedPost = JSON.parse(localStorage.getItem("post"));
+        setPost(storedPost);
+      }
       try {
         const response = await fetch(`${url}/api/posts/${postid}`, {
           method: "GET",
@@ -31,6 +36,7 @@ function PostPage() {
           throw new Error(`HTTP error: ${response.status}`);
         }
         const data = await response.json();
+        localStorage.setItem("post", JSON.stringify(data));
         setPost(data);
         //console.log(data);
       } catch (err) {
@@ -42,9 +48,22 @@ function PostPage() {
     };
     getPost();
   }, []);
+*/
 
   useEffect(() => {
     const getComments = async () => {
+      if (localStorage.getItem("comments")) {
+        const storedComments = JSON.parse(localStorage.getItem("comments"));
+        setComments(storedComments);
+      }
+      if (localStorage.getItem("commentCount")) {
+        const storedCommentCount = JSON.parse(localStorage.getItem("comments"));
+        setCommentCount(storedCommentCount);
+      }
+      if (localStorage.getItem("post")) {
+        const storedPost = JSON.parse(localStorage.getItem("post"));
+        setPost(storedPost);
+      }
       try {
         const response = await fetch(`${url}/api/posts/${postid}/comments`, {
           method: "GET",
@@ -54,14 +73,22 @@ function PostPage() {
         }
         const data = await response.json();
         setComments(data.comments);
+        setPost(data.post);
         setCommentCount(data.comments.length);
+        localStorage.setItem("comments", JSON.stringify(data.comments));
+        localStorage.setItem(
+          "commentCount",
+          JSON.stringify(data.comments.length)
+        );
+        localStorage.setItem("post", JSON.stringify(data.post));
         setError(null);
-        //console.log(data.comments);
       } catch (err) {
         setError(err.message);
         setComments(null);
+        setPost(null);
       } finally {
         setLoadingComments(false);
+        setLoadingPost(false);
       }
     };
     getComments();
