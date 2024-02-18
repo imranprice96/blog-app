@@ -50,21 +50,34 @@ function PostPage() {
   }, []);
 */
 
+  const checkLocalStorage = () => {
+    // Check for stored comments
+    if (localStorage.getItem(`${postid}_comments`)) {
+      const storedComments = JSON.parse(
+        localStorage.getItem(`${postid}_comments`)
+      );
+      setComments(storedComments);
+      setLoadingComments(false);
+    }
+    // Check for stored comment count
+    if (localStorage.getItem(`${postid}_count`)) {
+      const storedCommentCount = JSON.parse(
+        localStorage.getItem(`${postid}_count`)
+      );
+      setCommentCount(storedCommentCount);
+      setLoadingComments(false);
+    }
+    //Check for stored post
+    if (localStorage.getItem(`${postid}`)) {
+      const storedPost = JSON.parse(localStorage.getItem(`${postid}`));
+      setPost(storedPost);
+      setLoadingPost(false);
+    }
+  };
+
   useEffect(() => {
     const getComments = async () => {
-      // Check local storage for stored
-      if (localStorage.getItem(`${postid}_comments`)) {
-        const storedComments = JSON.parse(localStorage.getItem("comments"));
-        setComments(storedComments);
-      }
-      if (localStorage.getItem(`${postid}_count`)) {
-        const storedCommentCount = JSON.parse(localStorage.getItem("comments"));
-        setCommentCount(storedCommentCount);
-      }
-      if (localStorage.getItem(`${postid}`)) {
-        const storedPost = JSON.parse(localStorage.getItem("post"));
-        setPost(storedPost);
-      }
+      checkLocalStorage();
       try {
         const response = await fetch(`${url}/api/posts/${postid}/comments`, {
           method: "GET",
@@ -81,7 +94,7 @@ function PostPage() {
           JSON.stringify(data.comments)
         );
         localStorage.setItem(
-          `"${postid}_count"`,
+          `${postid}_count`,
           JSON.stringify(data.comments.length)
         );
         localStorage.setItem(`${postid}`, JSON.stringify(data.post));

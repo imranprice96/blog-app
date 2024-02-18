@@ -16,12 +16,17 @@ function App() {
     return sortedPosts;
   };
 
+  const checkLocalStorage = () => {
+    if (localStorage.getItem("blogPosts")) {
+      const storedPosts = JSON.parse(localStorage.getItem("blogPosts"));
+      setPosts(storedPosts);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
-      if (localStorage.getItem("blogPosts")) {
-        const storedPosts = JSON.parse(localStorage.getItem("blogPosts"));
-        setPosts(storedPosts);
-      }
+      checkLocalStorage();
       try {
         const response = await fetch(`${url}/api/posts`, {
           method: "GET",
