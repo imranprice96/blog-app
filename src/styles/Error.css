@@ -1,0 +1,29 @@
+.error-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--box-inner); /* Transparent black overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.error-header {
+  color: var(--header);
+  font-size: 1.5rem;
+}
+
+.error-btn {
+  background-color: var(--box-outer);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.error-btn:hover {
+  background-color: var(--hover);
+  color: white;
+}

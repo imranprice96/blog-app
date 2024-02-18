@@ -52,15 +52,16 @@ function PostPage() {
 
   useEffect(() => {
     const getComments = async () => {
-      if (localStorage.getItem("comments")) {
+      // Check local storage for stored
+      if (localStorage.getItem(`${postid}_comments`)) {
         const storedComments = JSON.parse(localStorage.getItem("comments"));
         setComments(storedComments);
       }
-      if (localStorage.getItem("commentCount")) {
+      if (localStorage.getItem(`${postid}_count`)) {
         const storedCommentCount = JSON.parse(localStorage.getItem("comments"));
         setCommentCount(storedCommentCount);
       }
-      if (localStorage.getItem("post")) {
+      if (localStorage.getItem(`${postid}`)) {
         const storedPost = JSON.parse(localStorage.getItem("post"));
         setPost(storedPost);
       }
@@ -75,12 +76,15 @@ function PostPage() {
         setComments(data.comments);
         setPost(data.post);
         setCommentCount(data.comments.length);
-        localStorage.setItem("comments", JSON.stringify(data.comments));
         localStorage.setItem(
-          "commentCount",
+          `${postid}_comments`,
+          JSON.stringify(data.comments)
+        );
+        localStorage.setItem(
+          `"${postid}_count"`,
           JSON.stringify(data.comments.length)
         );
-        localStorage.setItem("post", JSON.stringify(data.post));
+        localStorage.setItem(`${postid}`, JSON.stringify(data.post));
         setError(null);
       } catch (err) {
         setError(err.message);
